@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>MyDiary</title>
+ <!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> 
+ <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+ 
+<script src="https://use.fontawesome.com/23e735d26c.js"></script>
+<script>
+	$(document).ready(function(){
+		$('[data-toggle="tooltip"]').tooltip(); 
+	});
+</script>
+ 
+ <script src="js/custom.js"></script>
+<link rel="stylesheet" href="css/custom.css" />
+</head>
+<body ng-app="diaryApp" ng-controller="diaryAppController">
+<nav class="navbar navbar-default app-custom-navbar">
+	<div class="container-fluid app-custom-navbar-container">
+		<div class="navbar-header">
+			<a class="navbar-brand app-nav-text" href="#">My Diary</a>
+		</div>
+		<center>
+			<form class="navbar-form navbar-left app-custom-center-form">
+	        	<div class="form-group">
+	          		<input type="text" class="form-control" size="100" placeholder="Ask a question" ng-model="appQuestion">
+	        	</div>
+	        	<button type="submit" class="btn btn-default" ng-click="postQuestion()">Ask</button>
+	      	</form>
+		</center>
+		
+      <ul class="nav navbar-nav navbar-right">
+      
+        <!-- <li class='app-nav-text'><a href="#" app-nav-text>Answer a question</a></li> -->
+        
+	</div>
+	
+</nav>
+
+<div class="container app-body">
+		<ul class="thumbnails app-custom-text-card" style="list-style : none" >
+		  <li class="span4">
+		    <div class="thumbnail ">
+		    	<a href='#' data-toggle="tooltip" title="Get new Question" class="pull-right" ng-click="getQuestion()">
+		    		<i class="fa fa-refresh" aria-hidden="true"></i>
+		    	</a>	
+		      <small>Question For you</small>
+		      <h3>{{appTodayQuestion}}</h3>
+		      <div class="form-group">
+		      
+					<textarea rows="10" cols="138" placeholder="Write your answer here" ng-model='appTodayAnswer'></textarea>
+					<div class='input-group-btn'>
+						<Button class='btn btn-primary' ng-click='postQuestion()'>Answer</Button>
+					</div>
+			  </div>
+		      
+		    </div>
+		  </li>
+		</ul>
+		<hr><br>
+		<h4>Questions you have answered</h4>
+		<ul class="thumbnails app-custom-text-card" style="list-style : none" ng-repeat="record in qanswers">
+		  <li class="span4">
+		    <div class="thumbnail ">
+		    	<a href="#" data-toggle="tooltip" title="Share this answer" class="pull-right">
+		    		<i class="fa fa-share-alt " aria-hidden="true" ></i>
+		    	</a>
+		     
+		      <h3>{{record.question}}</h3>
+		      <p>{{record.answer}}</p>
+		    </div>
+		  </li>
+		</ul>
+		
+		
+	</div>
+</body>
+</html>
